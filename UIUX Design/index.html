@@ -1,0 +1,1087 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MixCertificate 2.0 - Bulk Certificate Generator & Verifier</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- Main Style Sheet -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+    <!-- SYSTEM ALERTS CONTAINER -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- MAIN APP CONTAINER -->
+    <div id="app">
+
+        <!-- ========================================== -->
+        <!-- SCREEN 1: LOGIN / SIGN-UP SCREEN          -->
+        <!-- ========================================== -->
+        <section id="login-screen" class="screen-view active">
+            <div class="login-container">
+                <!-- Left Panel: Product Pitch & Branding -->
+                <div class="login-visual-panel">
+                    <div class="login-visual-content">
+                        <div class="brand-logo-large">
+                            <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <rect width="24" height="24" rx="6" fill="url(#logo-grad)"/>
+                                <path d="M12 5V19M5 12H19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                                <circle cx="12" cy="12" r="3" fill="white"/>
+                            </svg>
+                            <span>MixCertificate</span>
+                        </div>
+                        
+                        <h1 class="visual-heading">The Future of Digital Credentials</h1>
+                        <p class="visual-subheading">Generate, verify, and deliver secure, beautiful digital certificates in bulk. Elevate your brand authority with tamper-proof achievement badges.</p>
+
+                        <!-- Dynamic Visual Certificate Mockup -->
+                        <div class="visual-certificate-card">
+                            <div class="card-glow"></div>
+                            <div class="mini-cert-header">
+                                <div class="mini-dot"></div>
+                                <div class="mini-title">CERTIFICATE OF EXCELLENCE</div>
+                            </div>
+                            <div class="mini-cert-body">
+                                <div class="mini-name">Olivia Vance</div>
+                                <div class="mini-desc">Successful mastery of Artificial Intelligence Deep Learning</div>
+                            </div>
+                            <div class="mini-cert-footer">
+                                <div class="mini-sig">
+                                    <div class="sig-line"></div>
+                                    <span>Director</span>
+                                </div>
+                                <div class="mini-qr">
+                                    <svg viewBox="0 0 100 100" fill="currentColor">
+                                        <rect width="20" height="20" x="10" y="10"/>
+                                        <rect width="20" height="20" x="70" y="10"/>
+                                        <rect width="20" height="20" x="10" y="70"/>
+                                        <rect width="20" height="20" x="70" y="70"/>
+                                        <rect width="10" height="10" x="40" y="40"/>
+                                        <rect width="10" height="10" x="50" y="30"/>
+                                        <rect width="10" height="10" x="30" y="50"/>
+                                        <rect width="10" height="10" x="50" y="60"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Stats row inside visual panel -->
+                        <div class="visual-stats-row">
+                            <div class="v-stat">
+                                <h3>5M+</h3>
+                                <p>Certificates Issued</p>
+                            </div>
+                            <div class="v-stat">
+                                <h3>99.9%</h3>
+                                <p>Email Delivery</p>
+                            </div>
+                            <div class="v-stat">
+                                <h3>100%</h3>
+                                <p>Tamper Proof</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right Panel: Sleek Form -->
+                <div class="login-form-panel">
+                    <div class="login-form-box">
+                        <div class="form-header">
+                            <h2>Welcome back</h2>
+                            <p>Enter your credentials to access your creator dashboard</p>
+                        </div>
+
+                        <form id="auth-form" onsubmit="event.preventDefault();">
+                            <div class="input-group">
+                                <label for="login-email">Email Address</label>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                        <polyline points="22,6 12,13 2,6"/>
+                                    </svg>
+                                    <input type="email" id="login-email" placeholder="name@organization.com" required value="admin@mixcertificate.com">
+                                </div>
+                            </div>
+
+                            <div class="input-group">
+                                <div class="label-row">
+                                    <label for="login-password">Password</label>
+                                    <a href="#" class="forgot-pass-link">Forgot password?</a>
+                                </div>
+                                <div class="input-wrapper">
+                                    <svg class="input-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+                                        <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+                                    </svg>
+                                    <input type="password" id="login-password" placeholder="••••••••••••" required value="password123">
+                                    <button type="button" class="password-toggle-btn" aria-label="Toggle Password Visibility">
+                                        <svg id="pass-eye-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                            <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                                            <circle cx="12" cy="12" r="3"/>
+                                        </svg>
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="remember-row">
+                                <label class="checkbox-container">
+                                    <input type="checkbox" checked>
+                                    <span class="checkmark"></span>
+                                    Keep me signed in for 30 days
+                                </label>
+                            </div>
+
+                            <button type="submit" id="btn-login-submit" class="btn btn-primary btn-full btn-glow">
+                                <span>Sign In to Platform</span>
+                                <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12 5 19 12 12 19"></polyline>
+                                </svg>
+                            </button>
+                        </form>
+
+                        <div class="oauth-divider">
+                            <span>or continue with credentials from</span>
+                        </div>
+
+                        <div class="oauth-buttons-row">
+                            <button class="btn btn-secondary oauth-btn">
+                                <svg viewBox="0 0 24 24" class="oauth-icon">
+                                    <path fill="#EA4335" d="M12 5c1.6 0 3 .6 4.1 1.7l3.1-3.1C17.3 1.8 14.8 1 12 1 7.3 1 3.4 3.7 1.6 7.7l3.8 3C6.3 7.8 8.9 5 12 5z"/>
+                                    <path fill="#4285F4" d="M23.5 12.3c0-.8-.1-1.7-.2-2.5H12v4.8h6.5c-.3 1.5-1.1 2.8-2.4 3.7l3.7 2.9c2.2-2 3.7-5 3.7-8.9z"/>
+                                    <path fill="#FBBC05" d="M5.4 14.8c-.3-.8-.4-1.8-.4-2.8s.1-2 .4-2.8l-3.8-3C.6 8.3 0 10.1 0 12s.6 3.7 1.6 5.8l3.8-3z"/>
+                                    <path fill="#34A853" d="M12 23c3.2 0 6-1.1 8-3l-3.7-2.9c-1.1.7-2.5 1.2-4.3 1.2-3.1 0-5.7-2.8-6.6-5.7l-3.8 3C3.4 20.3 7.3 23 12 23z"/>
+                                </svg>
+                                <span>Google Workspace</span>
+                            </button>
+                        </div>
+
+                        <p class="form-footer-text">Don't have an organization account? <a href="#" class="primary-link">Request Demo Access</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========================================== -->
+        <!-- CORE PORTAL CONTAINER (SIDEBAR + CONTENT)  -->
+        <!-- ========================================== -->
+        <main id="app-workspace" class="screen-view">
+            
+            <!-- 1. SIDEBAR NAVIGATION -->
+            <aside class="sidebar">
+                <div class="sidebar-header">
+                    <div class="brand-logo">
+                        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="24" height="24" rx="6" fill="url(#logo-grad)"/>
+                            <path d="M12 5V19M5 12H19" stroke="white" stroke-width="2.5" stroke-linecap="round"/>
+                            <circle cx="12" cy="12" r="3" fill="white"/>
+                        </svg>
+                        <span>MixCertificate</span>
+                    </div>
+                    <!-- Mobile Menu Close -->
+                    <button class="mobile-sidebar-close" id="mobile-menu-close">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+
+                <nav class="sidebar-menu">
+                    <button class="menu-item active" data-target="dashboard-view">
+                        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="7" height="9"/>
+                            <rect x="14" y="3" width="7" height="5"/>
+                            <rect x="14" y="12" width="7" height="9"/>
+                            <rect x="3" y="16" width="7" height="5"/>
+                        </svg>
+                        <span>Analytics Dashboard</span>
+                    </button>
+
+                    <button class="menu-item" data-target="templates-view">
+                        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                            <line x1="3" y1="9" x2="21" y2="9"/>
+                            <line x1="9" y1="21" x2="9" y2="9"/>
+                        </svg>
+                        <span>Template Selection</span>
+                    </button>
+
+                    <button class="menu-item" data-target="editor-view">
+                        <svg class="menu-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 20h9"/>
+                            <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                        </svg>
+                        <span>Certificate Creator</span>
+                        <span class="badge-new">Studio</span>
+                    </button>
+                </nav>
+
+                <!-- Sidebar Footer Profile -->
+                <div class="sidebar-footer">
+                    <div class="user-profile-badge">
+                        <div class="avatar">
+                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80" alt="Nikitha User">
+                            <div class="status-indicator"></div>
+                        </div>
+                        <div class="user-info">
+                            <span class="user-name">Nikitha Reddy</span>
+                            <span class="user-role">Administrator</span>
+                        </div>
+                    </div>
+                    <button class="btn-logout" id="btn-logout" title="Sign Out">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                            <polyline points="16 17 21 12 16 7"/>
+                            <line x1="21" y1="12" x2="9" y2="12"/>
+                        </svg>
+                    </button>
+                </div>
+            </aside>
+
+            <!-- 2. CONTENT VIEWPORT -->
+            <div class="content-viewport">
+                <!-- Top Navigation Header -->
+                <header class="top-bar">
+                    <div class="top-bar-left">
+                        <button class="mobile-menu-trigger" id="mobile-menu-trigger" aria-label="Open Sidebar Menu">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <line x1="3" y1="12" x2="21" y2="12"/>
+                                <line x1="3" y1="6" x2="21" y2="6"/>
+                                <line x1="3" y1="18" x2="21" y2="18"/>
+                            </svg>
+                        </button>
+                        <h2 class="view-title" id="current-view-title">Analytics Dashboard</h2>
+                    </div>
+
+                    <div class="top-bar-right">
+                        <!-- Search Box -->
+                        <div class="search-box">
+                            <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <circle cx="11" cy="11" r="8"/>
+                                <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+                            </svg>
+                            <input type="text" placeholder="Search certificates, templates...">
+                        </div>
+
+                        <!-- Theme Toggle Button -->
+                        <button class="control-circle-btn" id="theme-toggle" title="Toggle Appearance Theme">
+                            <svg id="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <!-- Default is Sun Icon -->
+                                <circle cx="12" cy="12" r="5"/>
+                                <line x1="12" y1="1" x2="12" y2="3"/>
+                                <line x1="12" y1="21" x2="12" y2="23"/>
+                                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+                                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+                                <line x1="1" y1="12" x2="3" y2="12"/>
+                                <line x1="21" y1="12" x2="23" y2="12"/>
+                                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+                                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+                            </svg>
+                        </button>
+
+                        <!-- Notification Trigger -->
+                        <button class="control-circle-btn alert-badge" title="Notifications">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                <path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/>
+                                <path d="M13.73 21a2 2 0 0 1-3.46 0"/>
+                            </svg>
+                        </button>
+
+                        <!-- Quick Actions Button -->
+                        <button class="btn btn-primary" id="btn-quick-create">
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" class="btn-icon">
+                                <line x1="12" y1="5" x2="12" y2="19"/>
+                                <line x1="5" y1="12" x2="19" y2="12"/>
+                            </svg>
+                            <span>New Campaign</span>
+                        </button>
+                    </div>
+                </header>
+
+                <!-- WORKSPACE MAIN SCROLLER -->
+                <div class="view-scroller">
+
+                    <!-- ========================================== -->
+                    <!-- VIEW A: ANALYTICS DASHBOARD                -->
+                    <!-- ========================================== -->
+                    <section id="dashboard-view" class="workspace-section active">
+                        
+                        <!-- Grid 1: Analytics Counters -->
+                        <div class="analytics-grid">
+                            <div class="stat-card">
+                                <div class="stat-icon-wrapper accent-purple">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                        <polyline points="14 2 14 8 20 8"/>
+                                        <line x1="16" y1="13" x2="8" y2="13"/>
+                                        <line x1="16" y1="17" x2="8" y2="17"/>
+                                        <polyline points="10 9 9 9 8 9"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Total Certificates Issued</span>
+                                    <h2 class="stat-number" id="stat-issued-counter">0</h2>
+                                    <span class="stat-trend up">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                                        12.4% vs last month
+                                    </span>
+                                </div>
+                                <div class="stat-chart-mini">
+                                    <svg viewBox="0 0 100 30" class="sparkline">
+                                        <path d="M 0,25 Q 15,10 30,22 T 60,8 T 90,18 T 100,5" fill="none" stroke="#6366F1" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon-wrapper accent-emerald">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/>
+                                        <polyline points="22 4 12 14.01 9 11.01"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Email Delivery Rate</span>
+                                    <h2 class="stat-number">99.8%</h2>
+                                    <span class="stat-trend up">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                                        0.2% improvement
+                                    </span>
+                                </div>
+                                <div class="stat-chart-mini">
+                                    <svg viewBox="0 0 100 30" class="sparkline">
+                                        <path d="M 0,20 Q 20,20 40,10 T 80,12 T 100,2" fill="none" stroke="#10B981" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon-wrapper accent-amber">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <circle cx="12" cy="12" r="10"/>
+                                        <line x1="2" y1="12" x2="22" y2="12"/>
+                                        <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Active Verification Link Visits</span>
+                                    <h2 class="stat-number" id="stat-verified-counter">0</h2>
+                                    <span class="stat-trend up">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+                                        28.6% engagement spikes
+                                    </span>
+                                </div>
+                                <div class="stat-chart-mini">
+                                    <svg viewBox="0 0 100 30" class="sparkline">
+                                        <path d="M 0,28 Q 15,28 30,12 T 60,18 T 90,4 T 100,8" fill="none" stroke="#F59E0B" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+
+                            <div class="stat-card">
+                                <div class="stat-icon-wrapper accent-rose">
+                                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                        <polygon points="12 2 2 7 12 12 22 7 12 2"/>
+                                        <polyline points="2 17 12 22 22 17"/>
+                                        <polyline points="2 12 12 17 22 12"/>
+                                    </svg>
+                                </div>
+                                <div class="stat-content">
+                                    <span class="stat-label">Active Campaign Templates</span>
+                                    <h2 class="stat-number">12 Designs</h2>
+                                    <span class="stat-trend neutral">
+                                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                                        Steady design catalog
+                                    </span>
+                                </div>
+                                <div class="stat-chart-mini">
+                                    <svg viewBox="0 0 100 30" class="sparkline">
+                                        <path d="M 0,15 L 20,15 L 40,15 L 60,15 L 80,15 L 100,15" fill="none" stroke="#EF4444" stroke-width="2"/>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Two-Column Chart and Activity Workspace -->
+                        <div class="dashboard-details-row">
+                            <!-- Visual Chart Card -->
+                            <div class="panel-card chart-panel">
+                                <div class="panel-header">
+                                    <div>
+                                        <h3>Issuance Velocity Analysis</h3>
+                                        <p>Visual overview of certificate volumes generated over the past months</p>
+                                    </div>
+                                    <div class="panel-actions">
+                                        <select class="select-styled">
+                                            <option>Year 2026</option>
+                                            <option>Year 2025</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="chart-content">
+                                    <!-- Dynamic SVG Chart -->
+                                    <svg id="analytics-svg-chart" class="main-svg-chart" viewBox="0 0 600 240" preserveAspectRatio="none">
+                                        <!-- Definitions for gradients -->
+                                        <defs>
+                                            <linearGradient id="chart-area-grad" x1="0" y1="0" x2="0" y2="1">
+                                                <stop offset="0%" stop-color="var(--color-primary)" stop-opacity="0.3"/>
+                                                <stop offset="100%" stop-color="var(--color-primary)" stop-opacity="0"/>
+                                            </linearGradient>
+                                            <linearGradient id="chart-line-grad" x1="0" y1="0" x2="1" y2="0">
+                                                <stop offset="0%" stop-color="#818CF8"/>
+                                                <stop offset="100%" stop-color="#34D399"/>
+                                            </linearGradient>
+                                        </defs>
+
+                                        <!-- Grid lines -->
+                                        <line x1="50" y1="30" x2="570" y2="30" stroke="var(--color-border-card)" stroke-dasharray="4,4"/>
+                                        <line x1="50" y1="90" x2="570" y2="90" stroke="var(--color-border-card)" stroke-dasharray="4,4"/>
+                                        <line x1="50" y1="150" x2="570" y2="150" stroke="var(--color-border-card)" stroke-dasharray="4,4"/>
+                                        <line x1="50" y1="210" x2="570" y2="210" stroke="var(--color-border-card)"/>
+
+                                        <!-- Chart Area Fill -->
+                                        <path id="chart-fill-path" d="M 50,210 L 50,160 L 136,120 L 222,170 L 308,80 L 394,140 L 480,50 L 566,30 L 566,210 Z" fill="url(#chart-area-grad)"/>
+
+                                        <!-- Chart Border Line -->
+                                        <path id="chart-stroke-path" d="M 50,160 L 136,120 L 222,170 L 308,80 L 394,140 L 480,50 L 566,30" fill="none" stroke="url(#chart-line-grad)" stroke-width="3.5" stroke-linecap="round"/>
+
+                                        <!-- Interactive Nodes -->
+                                        <circle cx="50" cy="160" r="5" class="chart-point" data-value="12K" data-month="Jan"/>
+                                        <circle cx="136" cy="120" r="5" class="chart-point" data-value="18K" data-month="Feb"/>
+                                        <circle cx="222" cy="170" r="5" class="chart-point" data-value="10K" data-month="Mar"/>
+                                        <circle cx="308" cy="80" r="5" class="chart-point" data-value="26K" data-month="Apr"/>
+                                        <circle cx="394" cy="140" r="5" class="chart-point" data-value="15K" data-month="May"/>
+                                        <circle cx="480" cy="50" r="5" class="chart-point" data-value="32K" data-month="Jun"/>
+                                        <circle cx="566" cy="30" r="5" class="chart-point" data-value="38K" data-month="Jul"/>
+
+                                        <!-- Labels -->
+                                        <text x="50" y="230" class="chart-axis-text" text-anchor="middle">Jan</text>
+                                        <text x="136" y="230" class="chart-axis-text" text-anchor="middle">Feb</text>
+                                        <text x="222" y="230" class="chart-axis-text" text-anchor="middle">Mar</text>
+                                        <text x="308" y="230" class="chart-axis-text" text-anchor="middle">Apr</text>
+                                        <text x="394" y="230" class="chart-axis-text" text-anchor="middle">May</text>
+                                        <text x="480" y="230" class="chart-axis-text" text-anchor="middle">Jun</text>
+                                        <text x="566" y="230" class="chart-axis-text" text-anchor="middle">Jul</text>
+
+                                        <!-- Y Axis labels -->
+                                        <text x="40" y="34" class="chart-axis-text" text-anchor="end">40K</text>
+                                        <text x="40" y="94" class="chart-axis-text" text-anchor="end">25K</text>
+                                        <text x="40" y="154" class="chart-axis-text" text-anchor="end">10K</text>
+                                    </svg>
+                                    <!-- Tooltip -->
+                                    <div id="chart-tooltip" class="chart-tooltip"></div>
+                                </div>
+                            </div>
+
+                            <!-- Recent Campaigns Panel -->
+                            <div class="panel-card activity-panel">
+                                <div class="panel-header">
+                                    <div>
+                                        <h3>Recent Distribution Batches</h3>
+                                        <p>Status tracking for real-time and scheduled bulk certificate send-outs</p>
+                                    </div>
+                                </div>
+                                <div class="panel-content overflow-auto">
+                                    <table class="data-table">
+                                        <thead>
+                                            <tr>
+                                                <th>Campaign Name</th>
+                                                <th>Quantity</th>
+                                                <th>Status</th>
+                                                <th>Completion</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>
+                                                    <div class="campaign-cell">
+                                                        <span class="campaign-title">AI Deep Learning BootCamp 2026</span>
+                                                        <span class="campaign-meta">Academic Certificate • Issued 2h ago</span>
+                                                    </div>
+                                                </td>
+                                                <td>1,240</td>
+                                                <td><span class="badge status-success">Completed</span></td>
+                                                <td>
+                                                    <div class="prog-wrapper">
+                                                        <span class="prog-label">100%</span>
+                                                        <div class="progress-bar-container"><div class="progress-fill status-success" style="width: 100%"></div></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="campaign-cell">
+                                                        <span class="campaign-title">Global FinTech Summit Attendance</span>
+                                                        <span class="campaign-meta">Professional Badge • Sending now</span>
+                                                    </div>
+                                                </td>
+                                                <td>850</td>
+                                                <td><span class="badge status-progress">Sending</span></td>
+                                                <td>
+                                                    <div class="prog-wrapper">
+                                                        <span class="prog-label">62%</span>
+                                                        <div class="progress-bar-container"><div class="progress-fill status-progress animated-shimmer" style="width: 62%"></div></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="campaign-cell">
+                                                        <span class="campaign-title">Corporate Leadership Excellence '26</span>
+                                                        <span class="campaign-meta">Corporate Award • Scheduled</span>
+                                                    </div>
+                                                </td>
+                                                <td>120</td>
+                                                <td><span class="badge status-warning">Draft</span></td>
+                                                <td>
+                                                    <div class="prog-wrapper">
+                                                        <span class="prog-label">0%</span>
+                                                        <div class="progress-bar-container"><div class="progress-fill status-warning" style="width: 0%"></div></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td>
+                                                    <div class="campaign-cell">
+                                                        <span class="campaign-title">NGO Global Climate Hackathon</span>
+                                                        <span class="campaign-meta">Creative Appreciation • Issued 3d ago</span>
+                                                    </div>
+                                                </td>
+                                                <td>4,100</td>
+                                                <td><span class="badge status-success">Completed</span></td>
+                                                <td>
+                                                    <div class="prog-wrapper">
+                                                        <span class="prog-label">100%</span>
+                                                        <div class="progress-bar-container"><div class="progress-fill status-success" style="width: 100%"></div></div>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                    </section>
+
+                    <!-- ========================================== -->
+                    <!-- VIEW B: TEMPLATE SELECTION GALLERY         -->
+                    <!-- ========================================== -->
+                    <section id="templates-view" class="workspace-section">
+                        <div class="view-intro-row">
+                            <div>
+                                <h3>Select a Professional Template</h3>
+                                <p>Begin your certificate workspace by choosing from our beautiful, verified premium templates or starting fresh.</p>
+                            </div>
+                            <div class="view-intro-actions">
+                                <div class="filter-pills" id="template-filter-pills">
+                                    <button class="pill active" data-filter="all">All Designs</button>
+                                    <button class="pill" data-filter="academic">Academic</button>
+                                    <button class="pill" data-filter="corporate">Corporate</button>
+                                    <button class="pill" data-filter="minimalist">Minimalist</button>
+                                    <button class="pill" data-filter="creative">Creative</button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Template Grid Cards -->
+                        <div class="template-grid" id="template-card-grid">
+                            <!-- Template 1: Classic Academic -->
+                            <div class="template-card" data-category="academic" data-template-id="classic-academic">
+                                <div class="template-preview-mock mockup-academic">
+                                    <!-- A scaled CSS mockup representation inside -->
+                                    <div class="mock-cert-outer">
+                                        <div class="mock-cert-inner border-double">
+                                            <div class="mock-header">UNIVERSITY CERTIFICATE</div>
+                                            <div class="mock-body-field line-sm"></div>
+                                            <div class="mock-body-field line-lg"></div>
+                                            <div class="mock-body-field line-md"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-info">
+                                    <div class="tag-category">Academic</div>
+                                    <h4>Royal Oxford Classic</h4>
+                                    <p>Deep burgundy double borders, sophisticated serif typography, ideal for universities and diplomas.</p>
+                                    <button class="btn btn-secondary btn-full btn-select-template" data-template="classic-academic">
+                                        Customize Design
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Template 2: Sleek Modern Corporate -->
+                            <div class="template-card" data-category="corporate" data-template-id="modern-corporate">
+                                <div class="template-preview-mock mockup-corporate">
+                                    <div class="mock-cert-outer theme-blue-accents">
+                                        <div class="mock-cert-inner border-geometric">
+                                            <div class="corner-accents"></div>
+                                            <div class="mock-header text-right">CERTIFICATE OF ACHIEVEMENT</div>
+                                            <div class="mock-body-field line-lg"></div>
+                                            <div class="mock-body-field line-sm"></div>
+                                            <div class="mock-footer">
+                                                <div class="mock-badge"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-info">
+                                    <div class="tag-category">Corporate</div>
+                                    <h4>Modern Corporate Indigo</h4>
+                                    <p>Geometric sharp corners, slate-indigo overlays, clean sans-serif layouts suitable for corporate summits.</p>
+                                    <button class="btn btn-secondary btn-full btn-select-template" data-template="modern-corporate">
+                                        Customize Design
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Template 3: Creative Playful -->
+                            <div class="template-card" data-category="creative" data-template-id="creative-appreciation">
+                                <div class="template-preview-mock mockup-creative">
+                                    <div class="mock-cert-outer theme-warm">
+                                        <div class="abstract-blobs"></div>
+                                        <div class="mock-cert-inner">
+                                            <div class="mock-header font-playful">HONORARY COMMENDATION</div>
+                                            <div class="mock-body-field line-sm"></div>
+                                            <div class="mock-body-field line-md"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-info">
+                                    <div class="tag-category">Creative</div>
+                                    <h4>Neo-Warm Minimalist</h4>
+                                    <p>Soft fluid abstract shapes, elegant Outfit sans-serif typeface, excellent for digital workshops and communities.</p>
+                                    <button class="btn btn-secondary btn-full btn-select-template" data-template="creative-appreciation">
+                                        Customize Design
+                                    </button>
+                                </div>
+                            </div>
+
+                            <!-- Template 4: Clean Tech Minimalist -->
+                            <div class="template-card" data-category="minimalist" data-template-id="tech-minimalist">
+                                <div class="template-preview-mock mockup-minimalist">
+                                    <div class="mock-cert-outer">
+                                        <div class="mock-cert-inner border-thin">
+                                            <div class="mock-header font-tech">CERTIFICATE OF COMPLETION</div>
+                                            <div class="mock-body-field line-md"></div>
+                                            <div class="mock-body-field line-lg"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="template-info">
+                                    <div class="tag-category">Minimalist</div>
+                                    <h4>Cyber Tech Minimalist</h4>
+                                    <p>Ultra-thin clean lines, high-contrast monospace code styling, perfect for hackathons and software modules.</p>
+                                    <button class="btn btn-secondary btn-full btn-select-template" data-template="tech-minimalist">
+                                        Customize Design
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                    <!-- ========================================== -->
+                    <!-- VIEW C: INTERACTIVE CREATOR WORKSPACE      -->
+                    <!-- ========================================== -->
+                    <section id="editor-view" class="workspace-section">
+                        <div class="editor-split-workspace">
+                            
+                            <!-- A. Left Panel: Workspace Controls -->
+                            <div class="editor-controls-panel">
+                                
+                                <!-- Editor Section 1: Template Config -->
+                                <div class="control-card">
+                                    <div class="control-card-header" data-toggle="section-layout">
+                                        <h3>1. Certificate Canvas Theme</h3>
+                                        <svg viewBox="0 0 24 24" class="arrow-toggle" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"/>
+                                        </svg>
+                                    </div>
+                                    <div class="control-card-body active" id="section-layout">
+                                        <div class="control-row">
+                                            <label>Template Styling Color</label>
+                                            <div class="color-palette-picker">
+                                                <button class="color-dot active" style="background-color: #6366f1;" data-color="#6366f1" title="Indigo Accent"></button>
+                                                <button class="color-dot" style="background-color: #10b981;" data-color="#10b981" title="Emerald Accent"></button>
+                                                <button class="color-dot" style="background-color: #d97706;" data-color="#d97706" title="Amber Accent"></button>
+                                                <button class="color-dot" style="background-color: #be185d;" data-color="#be185d" title="Rose Accent"></button>
+                                                <button class="color-dot" style="background-color: #0f172a;" data-color="#0f172a" title="Dark Charcoal Accent"></button>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-row">
+                                            <label for="input-border-style">Canvas Border Style</label>
+                                            <select class="select-styled" id="input-border-style">
+                                                <option value="border-double">Traditional Double Border</option>
+                                                <option value="border-geometric" selected>Modern Geometric Corners</option>
+                                                <option value="border-thin">Sleek Ultra-Thin Line</option>
+                                                <option value="border-none">None (Border-Free)</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Editor Section 2: Dynamic Content -->
+                                <div class="control-card">
+                                    <div class="control-card-header" data-toggle="section-fields">
+                                        <h3>2. Dynamic Certificate Fields</h3>
+                                        <svg viewBox="0 0 24 24" class="arrow-toggle" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"/>
+                                        </svg>
+                                    </div>
+                                    <div class="control-card-body active" id="section-fields">
+                                        <div class="control-row">
+                                            <label for="field-cert-title">Certificate Header Title</label>
+                                            <input type="text" class="input-styled" id="field-cert-title" value="CERTIFICATE OF EXCELLENCE">
+                                        </div>
+
+                                        <div class="control-row">
+                                            <label for="field-recipient">Recipient Name (Live Placeholder)</label>
+                                            <input type="text" class="input-styled" id="field-recipient" value="Olivia Vance">
+                                            <p class="input-hint">Will adapt in bulk mode for CSV uploads.</p>
+                                        </div>
+
+                                        <div class="control-row">
+                                            <label for="field-description">Achievement Context / Course</label>
+                                            <textarea class="textarea-styled" id="field-description" rows="3">For exceptionally mastering the Artificial Intelligence Deep Learning 60-Hour Certification Course, demonstrating exceptional competence in neural architectures.</textarea>
+                                        </div>
+
+                                        <div class="control-row">
+                                            <label for="field-date">Issuance Date</label>
+                                            <input type="text" class="input-styled" id="field-date" value="May 18, 2026">
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Editor Section 3: Safety & Watermark -->
+                                <div class="control-card">
+                                    <div class="control-card-header" data-toggle="section-security">
+                                        <h3>3. Safety & Custom Verification</h3>
+                                        <svg viewBox="0 0 24 24" class="arrow-toggle" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"/>
+                                        </svg>
+                                    </div>
+                                    <div class="control-card-body" id="section-security">
+                                        <div class="toggle-row">
+                                            <div>
+                                                <label class="toggle-title">Verification Dynamic QR Code</label>
+                                                <p class="toggle-desc">Auto-generates a dynamic verification link for employers.</p>
+                                            </div>
+                                            <label class="switch-container">
+                                                <input type="checkbox" id="toggle-qr-code" checked>
+                                                <span class="switch-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="toggle-row">
+                                            <div>
+                                                <label class="toggle-title">Watermark Protection Overlay</label>
+                                                <p class="toggle-desc">Renders high-visibility watermarks (deactivated on premium export).</p>
+                                            </div>
+                                            <label class="switch-container">
+                                                <input type="checkbox" id="toggle-watermark">
+                                                <span class="switch-slider"></span>
+                                            </label>
+                                        </div>
+
+                                        <div class="control-row hidden" id="watermark-text-row">
+                                            <label for="field-watermark-text">Watermark Banner Overlay</label>
+                                            <input type="text" class="input-styled" id="field-watermark-text" value="PREVIEW ONLY">
+                                        </div>
+
+                                        <div class="control-row">
+                                            <label for="field-verif-id">Unique Verification ID</label>
+                                            <input type="text" class="input-styled" id="field-verif-id" value="MC-2026-8947A" disabled>
+                                            <p class="input-hint">System generated automatically during bulk generation.</p>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Editor Section 4: Issuer Attachments -->
+                                <div class="control-card">
+                                    <div class="control-card-header" data-toggle="section-attachments">
+                                        <h3>4. Signatures & Logos</h3>
+                                        <svg viewBox="0 0 24 24" class="arrow-toggle" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"/>
+                                        </svg>
+                                    </div>
+                                    <div class="control-card-body" id="section-attachments">
+                                        <div class="control-row">
+                                            <label>Issuer Official Logo</label>
+                                            <div class="upload-stub" id="stub-logo-upload">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                                    <polyline points="21 15 16 10 5 21"/>
+                                                </svg>
+                                                <span>Click to upload Logo</span>
+                                                <p class="stub-meta">PNG/SVG with transparent background</p>
+                                            </div>
+                                        </div>
+
+                                        <div class="control-row">
+                                            <label>Official Signature Image</label>
+                                            <div class="upload-stub" id="stub-sig-upload">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                    <path d="M12 20h9"/>
+                                                    <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
+                                                </svg>
+                                                <span>Upload Signature Vector</span>
+                                                <p class="stub-meta">Or use dynamic brush tool</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Editor Section 5: CSV Bulk Generation -->
+                                <div class="control-card border-accent-emerald">
+                                    <div class="control-card-header" data-toggle="section-csv">
+                                        <h3>5. CSV Bulk Issuer (Import)</h3>
+                                        <span class="badge status-success">Pro Feature</span>
+                                        <svg viewBox="0 0 24 24" class="arrow-toggle" fill="none" stroke="currentColor" stroke-width="2">
+                                            <polyline points="6 9 12 15 18 9"/>
+                                        </svg>
+                                    </div>
+                                    <div class="control-card-body" id="section-csv">
+                                        <div class="drag-drop-container" id="csv-drag-drop">
+                                            <svg class="cloud-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M21.2 15c.7-1.2 1-2.5.7-3.9-.5-2-2.4-3.5-4.6-3.5-.6 0-1.2.1-1.8.2C14.3 5.4 11.8 4 9 4 5.7 4 3 6.7 3 10c0 .4 0 .8.1 1.2C1.3 12.3 0 14 0 16c0 2.2 1.8 4 4 4h16c2.2 0 4-1.8 4-4 0-1.2-.6-2.3-1.6-3z"/>
+                                                <polyline points="16 16 12 12 8 16"/>
+                                                <line x1="12" y1="12" x2="12" y2="21"/>
+                                            </svg>
+                                            <span>Drag & Drop CSV / Excel File</span>
+                                            <p>Supports columns: <strong>Name, Course, Date, Email</strong></p>
+                                            <button type="button" class="btn btn-secondary btn-sm" id="btn-mock-csv-select">Select File</button>
+                                        </div>
+                                        <div class="csv-upload-status hidden" id="csv-status-card">
+                                            <div class="csv-meta">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+                                                <div>
+                                                    <span class="file-name" id="csv-file-name">recipients_list_2026.csv</span>
+                                                    <span class="file-size" id="csv-file-details">124 records found successfully.</span>
+                                                </div>
+                                            </div>
+                                            <button class="btn-remove-csv" id="btn-remove-csv" title="Remove File">
+                                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                            <!-- B. Right Panel: Dynamic Live Preview Canvas -->
+                            <div class="editor-preview-panel">
+                                <div class="canvas-top-bar">
+                                    <div class="zoom-indicators">
+                                        <button class="btn btn-secondary btn-circle-sm" id="btn-zoom-out" title="Zoom Out">-</button>
+                                        <span id="zoom-percent">100%</span>
+                                        <button class="btn btn-secondary btn-circle-sm" id="btn-zoom-in" title="Zoom In">+</button>
+                                    </div>
+                                    <div class="action-buttons">
+                                        <button class="btn btn-secondary" id="btn-preview-email" title="Simulate Email Distribution">
+                                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                                                <polyline points="22,6 12,13 2,6"/>
+                                            </svg>
+                                            <span>Email Bulk</span>
+                                        </button>
+                                        <button class="btn btn-primary" id="btn-export-options">
+                                            <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+                                                <polyline points="7 10 12 15 17 10"/>
+                                                <line x1="12" y1="15" x2="12" y2="3"/>
+                                            </svg>
+                                            <span>Export Options</span>
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- ACTUAL CERTIFICATE CANVAS STICKY WRAP -->
+                                <div class="canvas-viewport" id="canvas-viewport">
+                                    <div class="certificate-inner-canvas border-geometric theme-color-indigo" id="live-certificate-canvas">
+                                        
+                                        <!-- Translucent Watermark Overlay -->
+                                        <div class="watermark-overlay-label" id="canvas-watermark">PREVIEW ONLY</div>
+
+                                        <!-- Corner Decorative Trim (Calculated inside border styles) -->
+                                        <div class="decorative-corner top-left"></div>
+                                        <div class="decorative-corner top-right"></div>
+                                        <div class="decorative-corner bottom-left"></div>
+                                        <div class="decorative-corner bottom-right"></div>
+
+                                        <!-- Certificate Content Markup -->
+                                        <div class="certificate-canvas-body">
+                                            <div class="cert-top-logo-row">
+                                                <div class="cert-logo-placeholder" id="cert-logo-preview">
+                                                    <!-- Dynamic SVG Logo Shield -->
+                                                    <svg class="logo-shield" viewBox="0 0 40 40" fill="none">
+                                                        <rect width="40" height="40" rx="10" fill="currentColor"/>
+                                                        <circle cx="20" cy="20" r="8" fill="white"/>
+                                                    </svg>
+                                                </div>
+                                            </div>
+
+                                            <h1 class="cert-canvas-header" id="canvas-header-title">CERTIFICATE OF EXCELLENCE</h1>
+                                            <span class="cert-award-present">THIS CREDENTIAL IS PROUDLY CONFERRED TO</span>
+                                            
+                                            <h2 class="cert-recipient-name" id="canvas-recipient-name">Olivia Vance</h2>
+                                            
+                                            <p class="cert-achievement-text" id="canvas-description">
+                                                For exceptionally mastering the Artificial Intelligence Deep Learning 60-Hour Certification Course, demonstrating exceptional competence in neural architectures.
+                                            </p>
+
+                                            <!-- Certificate Footer Row -->
+                                            <div class="cert-footer-row">
+                                                <!-- Dynamic Date Field -->
+                                                <div class="cert-footer-col date-col">
+                                                    <span class="col-meta" id="canvas-date">May 18, 2026</span>
+                                                    <div class="col-line"></div>
+                                                    <span class="col-title">DATE OF ISSUANCE</span>
+                                                </div>
+
+                                                <!-- Dynamic QR Code System -->
+                                                <div class="cert-footer-col qr-col" id="canvas-qr-wrapper">
+                                                    <div class="canvas-qr-box">
+                                                        <svg viewBox="0 0 100 100" fill="currentColor" id="canvas-qr-svg">
+                                                            <rect width="20" height="20" x="10" y="10"/>
+                                                            <rect width="20" height="20" x="70" y="10"/>
+                                                            <rect width="20" height="20" x="10" y="70"/>
+                                                            <rect width="20" height="20" x="70" y="70"/>
+                                                            <rect width="10" height="10" x="40" y="40"/>
+                                                            <rect width="10" height="10" x="50" y="30"/>
+                                                            <rect width="10" height="10" x="30" y="50"/>
+                                                            <rect width="10" height="10" x="50" y="60"/>
+                                                        </svg>
+                                                    </div>
+                                                    <span class="qr-subtext" id="canvas-verif-id-label">ID: MC-2026-8947A</span>
+                                                </div>
+
+                                                <!-- Dynamic Signature -->
+                                                <div class="cert-footer-col sig-col">
+                                                    <div class="signature-canvas-container">
+                                                        <!-- Stylized Signature Path -->
+                                                        <svg viewBox="0 0 150 40" class="signature-drawn-path">
+                                                            <path d="M10,30 Q30,5 60,32 T110,8 T140,25" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
+                                                        </svg>
+                                                    </div>
+                                                    <div class="col-line"></div>
+                                                    <span class="col-title">AUTHORIZED SIGNATURE</span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+
+                </div>
+            </div>
+        </main>
+
+        <!-- ========================================== -->
+        <!-- SYSTEM MODALS CONTAINER                    -->
+        <!-- ========================================== -->
+        <!-- Modal A: Export Configurations Options -->
+        <div class="modal-backdrop" id="modal-export">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h3>Export Options Dashboard</h3>
+                    <button class="modal-close-btn" id="btn-close-export-modal">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <line x1="18" y1="6" x2="6" y2="18"/>
+                            <line x1="6" y1="6" x2="18" y2="18"/>
+                        </svg>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Select your preferred format to export the dynamic certificate template.</p>
+                    
+                    <div class="export-cards-grid">
+                        <div class="export-option-card" id="btn-download-pdf">
+                            <div class="export-card-icon-wrapper accent-rose">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/>
+                                    <polyline points="14 2 14 8 20 8"/>
+                                </svg>
+                            </div>
+                            <div class="export-card-content">
+                                <h4>Download PDF Document</h4>
+                                <p>Standard high-resolution layout perfect for physical print-outs.</p>
+                            </div>
+                        </div>
+
+                        <div class="export-option-card" id="btn-download-png">
+                            <div class="export-card-icon-wrapper accent-emerald">
+                                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+                                    <circle cx="8.5" cy="8.5" r="1.5"/>
+                                    <polyline points="21 15 16 10 5 21"/>
+                                </svg>
+                            </div>
+                            <div class="export-card-content">
+                                <h4>Download PNG Graphic</h4>
+                                <p>Lossless transparent PNG graphic ideal for digital sharing on LinkedIn.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal B: Bulk Email Sending Simulator Progress -->
+        <div class="modal-backdrop" id="modal-bulk-progress">
+            <div class="modal-card">
+                <div class="modal-header">
+                    <h3>Bulk Distribution Progress</h3>
+                </div>
+                <div class="modal-body text-center">
+                    <p class="modal-desc" id="bulk-progress-title">Uploading CSV records and validating template fields...</p>
+                    
+                    <div class="modal-progress-radial-container">
+                        <div class="progress-bar-container large-bar">
+                            <div class="progress-fill animated-shimmer status-progress" id="bulk-progress-bar" style="width: 0%"></div>
+                        </div>
+                        <span class="progress-percent-label" id="bulk-progress-percent">0%</span>
+                    </div>
+
+                    <div class="bulk-stats-row">
+                        <div class="b-stat">
+                            <span id="bulk-stat-sent">0</span>
+                            <p>Emailed</p>
+                        </div>
+                        <div class="b-stat">
+                            <span id="bulk-stat-total">124</span>
+                            <p>Total Queue</p>
+                        </div>
+                        <div class="b-stat">
+                            <span id="bulk-stat-failures">0</span>
+                            <p>Failures</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- SHARED SVG DEFINITION LAYER -->
+    <svg style="display: none;">
+        <defs>
+            <linearGradient id="logo-grad" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0%" stop-color="#4F46E5"/>
+                <stop offset="100%" stop-color="#10B981"/>
+            </linearGradient>
+        </defs>
+    </svg>
+
+    <!-- Main Logic Script -->
+    <script src="app.js"></script>
+</body>
+</html>

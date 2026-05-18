@@ -1,0 +1,20 @@
+{
+  "name": "mixcertificate-redesign",
+  "version": "1.0.0",
+  "description": "Premium glassmorphic redesign of the MixCertificate digital credentials platform.",
+  "main": "index.html",
+  "scripts": {
+    "dev": "npx http-server -p 3000 -c-1 -o"
+  },
+  "keywords": [
+    "uiux",
+    "redesign",
+    "certificate",
+    "dashboard"
+  ],
+  "author": "Antigravity",
+  "license": "MIT",
+  "devDependencies": {
+    "http-server": "^14.1.1"
+  }
+}
